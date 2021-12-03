@@ -20,7 +20,7 @@
             <div class="select" onchange="calculateCost()">
                 <select id="current-enhancement-count"></select>
             </div>
-            <p class="help">The number of enhancements already applied to this action rather than the total number of enhancements applied to this ability card.</p>
+            <p class="help">The number of enhancements already applied to this action and NOT the total number of enhancements applied to this ability card.</p>
         </div>
         <div class="field">
             <label for="number-of-targets" class="label">Number of Targets</label>
@@ -43,7 +43,7 @@
                     <option>15</option>
                 </select>
             </div>
-            <p class="help">Exact number of targets only matters for adding an attack hex. For the others, it only matters if it is target 1 or target more than 1.</p>
+            <p class="help">Exact number of targets only matters for adding an attack hex. For the other enhancements, it only matters if it is target 1 or target greater than 1.</p>
         </div>
         <div class="field">
             <label for="enhancement" class="label">Enhancement</label>
@@ -52,7 +52,24 @@
             </div>
         </div>
         <br/>
-        <div class="box" id="cost"></div>
+        <table class="table">
+            <tr>
+                <th>Level of Ability Card</th>
+                <td id="table-level-cost"></td>
+            </tr>
+            <tr>
+                <th>Number of Previous Enhancements</th>
+                <td id="table-enhancement-count-cost"></td>
+            </tr>
+            <tr>
+                <th>Base Enhancement Cost</th>
+                <td id="table-base-enhancement-cost"></td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <th id="table-total-cost"></th>
+            </tr>
+        </table>
     </div>
 </section>
 <script src="index.js"></script>

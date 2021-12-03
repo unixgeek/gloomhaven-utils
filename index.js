@@ -1,8 +1,9 @@
 function setOptions(elementId, costs) {
     const selectElement = document.getElementById(elementId);
     selectElement.innerHTML = "";
-    costs.forEach(element => {
-        selectElement.innerHTML += "<option>" + element.option + "</option>";
+    costs.forEach((element, index) => {
+
+        selectElement.innerHTML += "<option value='" + index + "'>" + element.option + "</option>";
     });
 }
 
@@ -58,32 +59,33 @@ const enhancementCosts = [
 setOptions("enhancement", enhancementCosts);
 
 function calculateCost() {
-    const cardLevel = document.getElementById("card-level").value;
-    const currentEnhancement = document.getElementById("current-enhancement-count").value;
+    const cardLevelCost = cardLevelCosts[document.getElementById("card-level").value].cost;
+    const enhancementCountCost = currentEnhancementsCost[document.getElementById("current-enhancement-count").value].cost;
+    const enhancement = enhancementCosts[document.getElementById("enhancement").value];
     const numberOfTargets = document.getElementById("number-of-targets").value;
-    const enhancement = document.getElementById("enhancement").value;
 
-    const cardLevelCost = cardLevelCosts[cardLevel - 1].cost;
-    const currentEnhancementCost = currentEnhancementsCost[currentEnhancement].cost;
-
-    let enhancementCost = 1000;
-    for (const i in enhancementCosts) {
-        if (enhancementCosts[i].option === enhancement) {
-            enhancementCost = enhancementCosts[i].cost;
-            break;
-        }
-    }
-
-    if (enhancement === "Attack Hex") {
+    let enhancementCost = enhancement.cost;
+    let targetCalculation = "";
+    if (enhancement.option === "Attack Hex") {
+        targetCalculation = `( ⌊${enhancementCost} ÷ ${numberOfTargets}⌋)`;
         enhancementCost = Math.floor(enhancementCost / numberOfTargets);
-    }
-    else if (numberOfTargets > 1) {
+    } else if (numberOfTargets > 1) {
+        targetCalculation = `(${enhancementCost} × 2)`;
         enhancementCost *= 2;
     }
 
-    const totalCost = cardLevelCost + currentEnhancementCost + enhancementCost;
+    const totalCost = cardLevelCost + enhancementCountCost + enhancementCost;
 
-    document.getElementById("cost").innerHTML = `<b>${totalCost} Gold</b`;
+    setHtml("table-level-cost", `${cardLevelCost}g`);
+    setHtml("table-enhancement-count-cost", `${enhancementCountCost}g`);
+    setHtml("table-base-enhancement-cost", `${enhancementCost}g ${targetCalculation}`);
+    setHtml("table-total-cost", `${totalCost}g`);
+}
+
+function setHtml(id, html) {
+    document.getElementById(id).innerHTML = html;
 }
 
 calculateCost();
+
+// 100g (50g * 2) Use multiply and division symbol? what is the floor symbol?
