@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 <body>
-<section class="section">
+<div class="tabs">
+    <ul>
+        <li id="calculator-tab" class="is-active"><a onclick="showCalculator()">Calculator</a></li>
+        <li id="costs-tab"><a onclick="showCosts()">Costs</a></li>
+    </ul>
+</div>
+<section id="calculator-page" class="section">
     <div class="container">
         <div class="field">
             <label for="card-level" class="label">Card Level</label>
@@ -20,7 +26,8 @@
             <div class="select" onchange="calculateCost()">
                 <select id="current-enhancement-count"></select>
             </div>
-            <p class="help">The number of enhancements already applied to this action and NOT the total number of enhancements applied to this ability card.</p>
+            <p class="help">The number of enhancements already applied to this action and NOT the total number of
+                enhancements applied to this ability card.</p>
         </div>
         <div class="field">
             <label for="number-of-targets" class="label">Number of Targets</label>
@@ -43,7 +50,8 @@
                     <option>15</option>
                 </select>
             </div>
-            <p class="help">Exact number of targets only matters for adding an attack hex. For the other enhancements, it only matters if it is target 1 or target greater than 1.</p>
+            <p class="help">Exact number of targets only matters for adding an attack hex. For the other enhancements,
+                it only matters if it is target 1 or target greater than 1.</p>
         </div>
         <div class="field">
             <label for="enhancement" class="label">Enhancement</label>
@@ -69,6 +77,13 @@
                 <th>Total</th>
                 <th id="table-total-cost"></th>
             </tr>
+        </table>
+    </div>
+</section>
+<section id="costs-page" class="section is-hidden">
+    <div class="container">
+        <table class="table is-bordered is-striped">
+            <tbody id="cost-table"></tbody>
         </table>
     </div>
 </section>

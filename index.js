@@ -7,6 +7,24 @@ function setOptions(elementId, costs) {
     });
 }
 
+function setHtml(id, html) {
+    document.getElementById(id).innerHTML = html;
+}
+
+function showCosts() {
+    document.getElementById("costs-tab").classList.add("is-active");
+    document.getElementById("costs-page").classList.remove("is-hidden");
+    document.getElementById("calculator-tab").classList.remove("is-active");
+    document.getElementById("calculator-page").classList.add("is-hidden");
+}
+
+function showCalculator() {
+    document.getElementById("calculator-tab").classList.add("is-active");
+    document.getElementById("calculator-page").classList.remove("is-hidden");
+    document.getElementById("costs-tab").classList.remove("is-active");
+    document.getElementById("costs-page").classList.add("is-hidden");
+}
+
 const currentEnhancementsCost = [
     {option: 0, cost: 0,},
     {option: 1, cost: 75},
@@ -82,10 +100,10 @@ function calculateCost() {
     setHtml("table-total-cost", `${totalCost}g`);
 }
 
-function setHtml(id, html) {
-    document.getElementById(id).innerHTML = html;
-}
-
 calculateCost();
 
-// 100g (50g * 2) Use multiply and division symbol? what is the floor symbol?
+const costTable = document.getElementById("cost-table");
+costTable.innerHTML = "<tr><th>Enhancement</th><th>Cost</th></tr>";
+enhancementCosts.forEach(enhancement => {
+    costTable.innerHTML += `<tr><th>${enhancement.option}</th><td>${enhancement.cost}g</td></tr>`;
+});
