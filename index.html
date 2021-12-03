@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gloomhaven Enhancement Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <div class="field">
+            <label for="card-level" class="label">Card Level</label>
+            <div class="select" onchange="calculateCost()">
+                <select id="card-level"></select>
+            </div>
+        </div>
+        <div class="field">
+            <label for="current-enhancement-count" class="label">Current Enhancement Count</label>
+            <div class="select" onchange="calculateCost()">
+                <select id="current-enhancement-count"></select>
+            </div>
+            <p class="help">The number of enhancements already applied to this action rather than the total number of enhancements applied to this ability card.</p>
+        </div>
+        <div class="field">
+            <label for="number-of-targets" class="label">Number of Targets</label>
+            <div class="select">
+                <select id="number-of-targets" onchange="calculateCost()">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                </select>
+            </div>
+            <p class="help">Exact number of targets only matters for adding an attack hex. For the others, it only matters if it is target 1 or target more than 1.</p>
+        </div>
+        <div class="field">
+            <label for="enhancement" class="label">Enhancement</label>
+            <div class="select" onchange="calculateCost()">
+                <select id="enhancement"></select>
+            </div>
+        </div>
+        <br/>
+        <div class="box" id="cost"></div>
+    </div>
+</section>
+<script src="index.js"></script>
+</body>
+</html>
