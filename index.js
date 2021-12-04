@@ -1,37 +1,41 @@
+///////////////// Begin UI Functions
 function setOptions(elementId, costs) {
     const selectElement = document.getElementById(elementId);
-    selectElement.innerHTML = "";
-    costs.forEach((element, index) => {
 
-        selectElement.innerHTML += "<option value='" + index + "'>" + element.option + "</option>";
+    let html = "";
+    costs.forEach((element, index) => {
+        html += `<option value="${index}">${element.option}</option>`;
+    });
+    selectElement.insertAdjacentHTML("afterbegin", html);
+
+    selectElement.addEventListener("change", () => {
+        calculateCost();
     });
 }
 
-function setHtml(id, html) {
-    document.getElementById(id).innerHTML = html;
-}
+document.getElementById("calculator-tab").addEventListener("click", () => {
+    if (!document.getElementById("calculator-tab").classList.contains("is-active")) {
+        document.getElementById("calculator-tab").classList.add("is-active");
+        document.getElementById("calculator-page").classList.remove("is-hidden");
+        document.getElementById("costs-tab").classList.remove("is-active");
+        document.getElementById("costs-page").classList.add("is-hidden");
+    }
+});
 
-function showCosts() {
-    document.getElementById("costs-tab").classList.add("is-active");
-    document.getElementById("costs-page").classList.remove("is-hidden");
-    document.getElementById("calculator-tab").classList.remove("is-active");
-    document.getElementById("calculator-page").classList.add("is-hidden");
-}
+document.getElementById("costs-tab").addEventListener("click", () => {
+    if (!document.getElementById("costs-tab").classList.contains("is-active")) {
+        document.getElementById("costs-tab").classList.add("is-active");
+        document.getElementById("costs-page").classList.remove("is-hidden");
+        document.getElementById("calculator-tab").classList.remove("is-active");
+        document.getElementById("calculator-page").classList.add("is-hidden");
+    }
+});
 
-function showCalculator() {
-    document.getElementById("calculator-tab").classList.add("is-active");
-    document.getElementById("calculator-page").classList.remove("is-hidden");
-    document.getElementById("costs-tab").classList.remove("is-active");
-    document.getElementById("costs-page").classList.add("is-hidden");
-}
+document.getElementById("number-of-targets").addEventListener("change", () => {
+    calculateCost();
+});
 
-const currentEnhancementsCost = [
-    {option: 0, cost: 0,},
-    {option: 1, cost: 75},
-    {option: 2, cost: 150},
-    {option: 3, cost: 225},
-];
-setOptions("current-enhancement-count", currentEnhancementsCost);
+///////////////// End UI Functions
 
 const cardLevelCosts = [
     {option: 1, cost: 0,},
@@ -45,6 +49,14 @@ const cardLevelCosts = [
     {option: 9, cost: 200},
 ];
 setOptions("card-level", cardLevelCosts);
+
+const enhancementCountCosts = [
+    {option: 0, cost: 0,},
+    {option: 1, cost: 75},
+    {option: 2, cost: 150},
+    {option: 3, cost: 225},
+];
+setOptions("current-enhancement-count", enhancementCountCosts);
 
 const enhancementCosts = [
     {option: "Any Element", cost: 150},
@@ -78,7 +90,7 @@ setOptions("enhancement", enhancementCosts);
 
 function calculateCost() {
     const cardLevelCost = cardLevelCosts[document.getElementById("card-level").value].cost;
-    const enhancementCountCost = currentEnhancementsCost[document.getElementById("current-enhancement-count").value].cost;
+    const enhancementCountCost = enhancementCountCosts[document.getElementById("current-enhancement-count").value].cost;
     const enhancement = enhancementCosts[document.getElementById("enhancement").value];
     const numberOfTargets = document.getElementById("number-of-targets").value;
 
@@ -94,16 +106,21 @@ function calculateCost() {
 
     const totalCost = cardLevelCost + enhancementCountCost + enhancementCost;
 
-    setHtml("table-level-cost", `${cardLevelCost}g`);
-    setHtml("table-enhancement-count-cost", `${enhancementCountCost}g`);
-    setHtml("table-base-enhancement-cost", `${enhancementCost}g ${targetCalculation}`);
-    setHtml("table-total-cost", `${totalCost}g`);
+    document.getElementById("table-level-cost").innerHTML = `${cardLevelCost}g`;
+    document.getElementById("table-enhancement-count-cost").innerHTML = `${enhancementCountCost}g`;
+    document.getElementById("table-base-enhancement-cost").innerHTML = `${enhancementCost}g ${targetCalculation}`;
+    document.getElementById("table-total-cost").innerHTML = `${totalCost}g`;
 }
 
+// Initialize calculator.
 calculateCost();
 
-const costTable = document.getElementById("cost-table");
-costTable.innerHTML = "<tr><th>Enhancement</th><th>Cost</th></tr>";
-enhancementCosts.forEach(enhancement => {
-    costTable.innerHTML += `<tr><th>${enhancement.option}</th><td>${enhancement.cost}g</td></tr>`;
-});
+// Initialize costs table.
+{
+    const costTable = document.getElementById("cost-table");
+    let html = "<tr><th>Enhancement</th><th>Cost</th></tr>";
+    enhancementCosts.forEach(enhancement => {
+        html += `<tr><th>${enhancement.option}</th><td>${enhancement.cost}g</td></tr>`;
+    });
+    costTable.insertAdjacentHTML("afterbegin", html);
+}
