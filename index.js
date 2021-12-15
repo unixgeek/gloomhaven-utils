@@ -8,33 +8,31 @@ function setOptions(elementId, costs) {
     });
     selectElement.insertAdjacentHTML("afterbegin", html);
 
-    selectElement.addEventListener("change", () => {
-        calculateCost();
-    });
+    selectElement.addEventListener("change", calculateCost);
 }
 
-document.getElementById("calculator-tab").addEventListener("click", () => {
-    if (!document.getElementById("calculator-tab").classList.contains("is-active")) {
-        document.getElementById("calculator-tab").classList.add("is-active");
-        document.getElementById("calculator-page").classList.remove("is-hidden");
-        document.getElementById("costs-tab").classList.remove("is-active");
-        document.getElementById("costs-page").classList.add("is-hidden");
+document.querySelector(".tabs").addEventListener("click", (event) => {
+    const clickedTab = event.target.closest("li");
+
+    if (!clickedTab) {
+        return;
     }
+
+    // Make all tabs inactive.
+    document.querySelectorAll("div.tabs > ul > li").forEach((element) => {
+        element.classList.remove("is-active");
+    });
+    // Hide all pages.
+    document.querySelectorAll(".section").forEach((element) => {
+       element.classList.add("is-hidden");
+    });
+
+    // Set the clicked tab as active and unhide the associated page.
+    clickedTab.classList.add("is-active");
+    document.querySelector(`[data-page=${clickedTab.dataset.tab}]`).classList.remove("is-hidden");
 });
 
-document.getElementById("costs-tab").addEventListener("click", () => {
-    if (!document.getElementById("costs-tab").classList.contains("is-active")) {
-        document.getElementById("costs-tab").classList.add("is-active");
-        document.getElementById("costs-page").classList.remove("is-hidden");
-        document.getElementById("calculator-tab").classList.remove("is-active");
-        document.getElementById("calculator-page").classList.add("is-hidden");
-    }
-});
-
-document.getElementById("number-of-targets").addEventListener("change", () => {
-    calculateCost();
-});
-
+document.getElementById("number-of-targets").addEventListener("change", calculateCost);
 ///////////////// End UI Functions
 
 const cardLevelCosts = [

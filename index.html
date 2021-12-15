@@ -9,11 +9,11 @@
 <body>
 <div class="tabs">
     <ul>
-        <li id="calculator-tab" class="is-active"><a>Calculator</a></li>
-        <li id="costs-tab"><a>Costs</a></li>
+        <li data-tab="calculator" class="is-active"><a>Calculator</a></li>
+        <li data-tab="costs"><a>Costs</a></li>
     </ul>
 </div>
-<section id="calculator-page" class="section">
+<section data-page="calculator" class="section">
     <div class="container">
         <div class="field">
             <label for="card-level" class="label">Card Level</label>
@@ -80,7 +80,7 @@
         </table>
     </div>
 </section>
-<section id="costs-page" class="section is-hidden">
+<section data-page="costs" class="section is-hidden">
     <div class="container">
         <table class="table is-bordered is-striped">
             <tbody id="cost-table"></tbody>
