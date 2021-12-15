@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 <body>
-<div class="tabs">
+<div class="tabs is-boxed">
     <ul>
         <li data-tab="calculator" class="is-active"><a>Calculator</a></li>
         <li data-tab="costs"><a>Costs</a></li>
     </ul>
 </div>
-<section data-page="calculator" class="section">
+<section data-page="calculator" class="section py-0">
     <div class="container">
         <div class="field">
             <label for="card-level" class="label">Card Level</label>
@@ -80,7 +80,7 @@
         </table>
     </div>
 </section>
-<section data-page="costs" class="section is-hidden">
+<section data-page="costs" class="section py-0 is-hidden">
     <div class="container">
         <table class="table is-bordered is-striped">
             <tbody id="cost-table"></tbody>
