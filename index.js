@@ -1,3 +1,5 @@
+"use strict";
+
 ///////////////// Begin UI Functions
 function setOptions(elementId, costs) {
     const selectElement = document.getElementById(elementId);
@@ -11,7 +13,7 @@ function setOptions(elementId, costs) {
     selectElement.addEventListener("change", calculateCost);
 }
 
-document.querySelector(".tabs").addEventListener("click", (event) => {
+document.querySelector(".tabs").addEventListener("click", event => {
     const clickedTab = event.target.closest("li");
 
     if (!clickedTab) {
@@ -19,11 +21,11 @@ document.querySelector(".tabs").addEventListener("click", (event) => {
     }
 
     // Make all tabs inactive.
-    document.querySelectorAll("div.tabs > ul > li").forEach((element) => {
+    document.querySelectorAll("div.tabs > ul > li").forEach(element => {
         element.classList.remove("is-active");
     });
     // Hide all pages.
-    document.querySelectorAll(".section").forEach((element) => {
+    document.querySelectorAll(".section").forEach(element => {
        element.classList.add("is-hidden");
     });
 
