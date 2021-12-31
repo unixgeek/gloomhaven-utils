@@ -26,7 +26,7 @@ document.querySelector(".tabs").addEventListener("click", event => {
     });
     // Hide all pages.
     document.querySelectorAll(".section").forEach(element => {
-       element.classList.add("is-hidden");
+        element.classList.add("is-hidden");
     });
 
     // Set the clicked tab as active and unhide the associated page.
