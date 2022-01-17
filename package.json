@@ -1,23 +1,24 @@
 {
   "name": "advancement-calculator",
+  "author": "Gunter Wambaugh <gunter.wambaugh@gmail.com>",
+  "license": "MIT",
   "version": "1.0.0",
   "description": "Card enhancement calculator for Gloomhaven.",
+  "repository": "https://github.com/unixgeek/gloomhaven-utils",
   "scripts": {
     "start": "rimraf dist && parcel index.html",
     "build": "rimraf dist .parcel-cache && parcel build --public-url . index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Gunter Wambaugh",
-  "license": "MIT",
   "browserslist": [
     "defaults",
     "not IE 11"
   ],
   "devDependencies": {
-    "parcel": "^2.0.1",
-    "rimraf": "^3.0.2"
+    "parcel": "~2.1.1",
+    "rimraf": "~3.0.2"
   },
   "dependencies": {
-    "bulma": "^0.9.3"
+    "bulma": "~0.9.3"
   }
 }
