@@ -35,6 +35,8 @@ document.querySelector(".tabs").addEventListener("click", event => {
 });
 
 document.getElementById("number-of-targets").addEventListener("change", calculateCost);
+
+document.getElementById("hand-size").addEventListener("change", calculateRounds);
 ///////////////// End UI Functions
 
 const cardLevelCosts = [
@@ -112,8 +114,18 @@ function calculateCost() {
     document.getElementById("table-total-cost").innerHTML = `${totalCost}g`;
 }
 
-// Initialize calculator.
+function calculateRounds() {
+    const handSize = document.getElementById("hand-size").value;
+
+    const roundCountMin = Math.floor(Math.pow((handSize / 2), 2));
+    const roundCountMax = roundCountMin + (handSize - 1);
+
+    document.getElementById("rounds-result").innerHTML = `Assuming all short rests you have <strong>${roundCountMin}</strong> rounds. Assuming all long rests you have <strong>${roundCountMax}</strong> rounds.`;
+}
+
+// Initialize calculator and rounds.
 calculateCost();
+calculateRounds();
 
 // Initialize costs table.
 {

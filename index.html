@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gloomhaven Enhancement Calculator</title>
     <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css">
+    <link rel="icon" href="axe.png">
     <script defer src="index.js"></script>
 </head>
 <body>
@@ -12,6 +13,7 @@
     <ul>
         <li data-tab="calculator" class="is-active"><a>Calculator</a></li>
         <li data-tab="costs"><a>Costs</a></li>
+        <li data-tab="rounds"><a>Rounds</a></li>
     </ul>
 </div>
 <section data-page="calculator" class="section py-0">
@@ -86,6 +88,15 @@
         <table class="table is-bordered is-striped">
             <tbody id="cost-table"></tbody>
         </table>
+    </div>
+</section>
+<section data-page="rounds" class="section py-0 is-hidden">
+    <div class="container">
+        <div class="field">
+            <label for="hand-size" class="label">Hand Size</label>
+            <input id="hand-size" class="input" type="number" value="10">
+        </div>
+        <p id="rounds-result"></p>
     </div>
 </section>
 </body>
