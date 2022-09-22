@@ -2,7 +2,7 @@
   "name": "advancement-calculator",
   "author": "Gunter Wambaugh <gunter.wambaugh@gmail.com>",
   "license": "MIT",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Card enhancement calculator for Gloomhaven.",
   "repository": "https://github.com/unixgeek/gloomhaven-utils",
   "scripts": {
@@ -15,10 +15,10 @@
     "not IE 11"
   ],
   "devDependencies": {
-    "parcel": "~2.6.1",
-    "rimraf": "~3.0.2"
+    "parcel": "=2.7.0",
+    "rimraf": "=3.0.2"
   },
   "dependencies": {
-    "bulma": "~0.9.4"
+    "bulma": "=0.9.4"
   }
 }
